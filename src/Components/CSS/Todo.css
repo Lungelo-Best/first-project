@@ -37,3 +37,18 @@
     padding-left: 35px;
     font-size: 20px;
 }
+
+.todo-add-btn{
+    border-radius: 50px;
+    background: #ff6739;
+    width: 187px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -100px;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 600;
+    cursor: pointer;  
+}
