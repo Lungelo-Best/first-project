@@ -12,7 +12,7 @@ const Todo = () => {
     }
 
     useEffect= (()=>{
-        console.log(todos)
+        console.log(todos);
     },[todos])
 return (
     <div className='todo'>
