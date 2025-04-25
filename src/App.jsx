@@ -1,5 +1,5 @@
 import Todo from "./Components/Todo"
-
+import ColourPicker from "./Components/ColourPicker"
 
 const App = () => {
 
@@ -8,6 +8,7 @@ const App = () => {
 
     <div>
       <Todo/>
+      <ColourPicker/>
     </div>
   )
 }
