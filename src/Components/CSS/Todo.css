@@ -52,3 +52,29 @@
     font-weight: 600;
     cursor: pointer;  
 }
+
+/* Priority color indicators */
+.high-priority {
+    border-left: 6px solid red;
+    background-color: #ffe6e6;
+}
+
+.medium-priority {
+    border-left: 6px solid orange;
+    background-color: #fff5e6;
+}
+
+.low-priority {
+    border-left: 6px solid green;
+    background-color: #e6ffed;
+}
+
+.priority-label {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.05);
+    text-transform: uppercase;
+    margin-top: 5px;
+}

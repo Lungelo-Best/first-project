@@ -1,43 +1,49 @@
-import './CSS/TodoItems.css'
-import tick from './Assets/tick.png'
-import not_tick from "./Assets/not_tick.png";
-import cross from "./Assets/cross.png";
+import './CSS/TodoItems.css';
+import tick from './Assets/tick.png';
+import not_tick from './Assets/not_tick.png';
+import cross from './Assets/cross.png';
 
-const TodoItems = ({no,display,text,setTodos}) => {
+const TodoItems = ({ no, display, text, setTodos, priority }) => {
 
-    const deleteTodo = (no) => {
-    let data = JSON.parse(localStorage.getItem("todos"));
-    data = data.filter((todo)= todo.no!==no)
-    setTodos(data);
-    }
+const deleteTodo = () => {
+    let todos = JSON.parse(localStorage.getItem('todos')) || [];
+    const updatedTodos = todos.filter(todo => todo.no !== no);
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
+    setTodos(updatedTodos);
+};
 
-    const toggle = () => {
-    let data = JSON.parse(localStorage.getItem("todos"));
-    for (let  i= 0; i < data.length;i++)
-    {
-        if(data[i].no===no){
-            if(data[i].display===""){
-                data[i].display = "line-through"
-            }
-            else
-            {
-                data[i].display = ""
-            }
-            break;
-        }
+const toggle = () => {
+    let todos = JSON.parse(localStorage.getItem('todos')) || [];
+    const updatedTodos = todos.map(todo => {
+    if (todo.no === no) {
+        return {
+        ...todo,
+        display: todo.display === '' ? 'line-through' : ''
+        };
     }
-    setTodos(data);
-    }
+    return todo;
+    });
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
+    setTodos(updatedTodos);
+};
 
 return (
-    <div className='todoitems'>
-        <div className={`todoitems-container ${display}`} onClick={()=>{toggle(no)}}>
-        {display===""? <img src={not_tick} alt="" /> : <img src={tick} alt="" />} 
+    <div className={`todoitems ${priority?.toLowerCase() || 'low'}-priority`}>
+    <div className={`todoitems-container ${display}`} onClick={toggle}>
+        {display === '' ? <img src={not_tick} alt="not done" /> : <img src={tick} alt="done" />}
         <div className="todoitems-text">{text}</div>
-        </div>
-        <img className='todoitems-crossicon' onClick={()=>{deleteTodo(no)}} src={cross} alt="" />
     </div>
-    )
-}
 
-export default TodoItems
+    <img
+        className="todoitems-crossicon"
+        onClick={deleteTodo}
+        src={cross}
+        alt="delete"
+    />
+
+    <div className="priority-label">{priority}</div>
+    </div>
+);
+};
+
+export default TodoItems;
