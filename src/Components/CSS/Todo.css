@@ -20,61 +20,47 @@
     line-height: 34px;
 }
 
-.todo-add{
+.todo-add {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 45px;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.todo-input{
-    border-radius: 50px; 
-    background: #edeef0;
-    border: none;
+.todo-input {
+    flex: 1;
+    height: 40px;
+    border-radius: 25px;
+    padding: 0 20px;
+    font-size: 16px;
+    border: 1px solid #e2e2e2;
     outline: none;
-    width: 576px;
-    height: 80px;
-    padding-left: 35px;
-    font-size: 20px;
 }
 
-.todo-add-btn{
-    border-radius: 50px;
-    background: #ff6739;
-    width: 187px;
-    height: 80px;
+.todo-priority-select {
+    min-width: 100px;
+    height: 40px;
+    border-radius: 25px;
+    padding: 0 10px;
+    font-size: 16px;
+    border: 1px solid #e2e2e2;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+.todo-add-btn {
+    height: 40px;
+    min-width: 80px;
+    border-radius: 25px;
+    background: #ff6b6b;
+    color: white;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: -100px;
-    color: #fff;
-    font-size: 26px;
-    font-weight: 600;
-    cursor: pointer;  
+    cursor: pointer;
 }
 
-/* Priority color indicators */
-.high-priority {
-    border-left: 6px solid red;
-    background-color: #ffe6e6;
-}
-
-.medium-priority {
-    border-left: 6px solid orange;
-    background-color: #fff5e6;
-}
-
-.low-priority {
-    border-left: 6px solid green;
-    background-color: #e6ffed;
-}
-
-.priority-label {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.05);
-    text-transform: uppercase;
-    margin-top: 5px;
+todo-add-btn:hover {
+    background: #ff5252;
 }

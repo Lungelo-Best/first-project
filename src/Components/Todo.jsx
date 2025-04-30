@@ -2,33 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 import './CSS/Todo.css';
 import TodoItems from './TodoItems';
 
+// Moved count outside component to prevent reset on re-renders
 let count = 0;
 
 const Todo = () => {
 const [todos, setTodos] = useState([]);
 const inputRef = useRef(null);
-  const priorityRef = useRef(null); // For selecting priority
+  const [priority, setPriority] = useState("Low"); // Default priority is Low
 
-const add = () => {
-    const text = inputRef.current.value.trim();
-    const priority = priorityRef.current.value;
-
-    if (!text) return;
-
-    const newTodo = {
-    no: count++,
-    text,
-    display: '',
-    priority,
-    };
-
-    const updatedTodos = [...todos, newTodo];
-    setTodos(updatedTodos);
-    inputRef.current.value = '';
-    localStorage.setItem('todos_count', count);
-    localStorage.setItem('todos', JSON.stringify(updatedTodos));
-};
-
+  // Load saved todos and count when component mounts
 useEffect(() => {
     const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
     const savedCount = parseInt(localStorage.getItem('todos_count')) || 0;
@@ -36,9 +18,31 @@ useEffect(() => {
     count = savedCount;
 }, []);
 
+  // Save todos whenever they change
 useEffect(() => {
+    if (todos.length > 0) {
     localStorage.setItem('todos', JSON.stringify(todos));
+    }
 }, [todos]);
+
+const add = () => {
+    const task = inputRef.current.value.trim();
+    if (task === "") return;
+    
+    const newTodo = {
+    no: count++,
+    text: task,
+    display: "",
+      priority: priority // Use the selected priority from state
+    };
+    
+    const updatedTodos = [...todos, newTodo];
+    setTodos(updatedTodos);
+    inputRef.current.value = "";
+    
+    // Update count in localStorage
+    localStorage.setItem("todos_count", count);
+};
 
 return (
     <div className='todo'>
@@ -46,11 +50,16 @@ return (
     <div className='todo-add'>
         <input
         ref={inputRef}
-        type='text'
+        type="text"
         placeholder='Add Your Task'
         className='todo-input'
         />
-        <select ref={priorityRef} className='todo-priority-select'>
+        {/* Priority dropdown - this is what allows users to select priority */}
+        <select
+        value={priority}
+        onChange={(e) => setPriority(e.target.value)}
+        className='todo-priority-select'
+        >
         <option value='High'>High</option>
         <option value='Medium'>Medium</option>
         <option value='Low'>Low</option>
@@ -59,7 +68,6 @@ return (
         ADD
         </div>
     </div>
-
     <div className='todo-list'>
         {todos.map((item, index) => (
         <TodoItems
