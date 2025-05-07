@@ -1,4 +1,3 @@
-/* Container to wrap both the todo item and delete button */
 .todoitems-wrapper {
     display: flex;
     justify-content: space-between;
@@ -7,33 +6,30 @@
     width: 100%;
 }
 
-/* Main todo item styles - using your existing properties */
 .todoitems {
     display: flex;
     justify-content: space-between;
     padding: 16px;
-    align-items: center;
+    align-items: center; 
     border-radius: 6px;
     flex: 1;
 }
 
-/* Priority-based backgrounds */
 .low-priority {
-    background-color: #e6ffec; /* Light green */
+    background-color: #e6ffec;
     border-left: 4px solid #4CAF50;
 }
 
 .medium-priority {
-    background-color: #fff2cc; /* Light yellow */
+    background-color: #fff2cc;
     border-left: 4px solid #FFC107;
 }
 
 .high-priority {
-    background-color: #ffcccc; /* Light red */
+    background-color: #ffcccc;
     border-left: 4px solid #F44336;
 }
 
-/* Container for checkbox and text - keeping your styles */
 .todoitems-container {
     display: flex;
     align-items: center;
@@ -48,7 +44,6 @@
     font-size: 22px;
 }
 
-/* Cross icon styles - moving outside with proper spacing */
 .todoitems-crossicon {
     cursor: pointer;
     margin-left: 12px;
@@ -56,12 +51,10 @@
     height: 20px;
 }
 
-/* Line-through style - keeping your style */
 .line-through {
     text-decoration: line-through solid #ADADAD 3px;
 }
 
-/* Priority label */
 .priority-label {
     font-size: 14px;
     font-weight: bold;
